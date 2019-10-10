@@ -73,6 +73,9 @@ func Run(s *Supplier) error {
 
 func RunPython(s *Supplier) error {
 	s.Log.BeginStep("Supplying Python")
+	s.Log.BeginStep("BuildDir : %s", s.Stager.BuildDir())
+	s.Log.BeginStep("DepDir : %s", s.Stager.DepDir())
+	s.Log.BeginStep("Stager : %#v", s.Stager)
 
 	dirSnapshot := snapshot.Dir(s.Stager.BuildDir(), s.Log)
 
