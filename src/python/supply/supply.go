@@ -75,7 +75,7 @@ func RunPython(s *Supplier) error {
 	s.Log.BeginStep("Supplying Python")
 	s.Log.BeginStep("BuildDir : %s", s.Stager.BuildDir())
 	s.Log.BeginStep("DepDir : %s", s.Stager.DepDir())
-	s.Log.BeginStep("Stager : %#v", s.Stager)
+	s.Log.BeginStep("Supplier : %#v", *s)
 
 	dirSnapshot := snapshot.Dir(s.Stager.BuildDir(), s.Log)
 
@@ -276,7 +276,8 @@ func (s *Supplier) InstallPython() error {
 			return err
 		}
 	}
-
+	s.Log.BeginStep("BuildDir : %s", s.Stager.BuildDir())
+	s.Log.BeginStep("DepDir : %s", s.Stager.DepDir())
 	pythonInstallDir := filepath.Join(s.Stager.DepDir(), "python")
 	if err := s.Installer.InstallDependency(dep, pythonInstallDir); err != nil {
 		return err
